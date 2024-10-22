@@ -74,9 +74,6 @@ jobs:
       - name: Debug Build
         run: |
           echo -e "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}\nRELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}\nRELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}">>local.properties
-          cat > service_account_credentials.json << EOF
-          ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}"
-          EOF
           mkdir TMessagesProj/config/
           echo ${{ secrets.KEYSTORE }} | base64 -d > TMessagesProj/config/release.keystore
           echo ${{ secrets.GOOGLE_SERVICES_JSON }} | base64 -d > TMessagesProj/google-services.json
@@ -163,9 +160,6 @@ jobs:
       - name: Debug Build
         run: |
           echo -e "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}\nRELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}\nRELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}">>local.properties
-          cat > service_account_credentials.json << EOF
-          ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}"
-          EOF
           mkdir TMessagesProj/config/
           echo ${{ secrets.KEYSTORE }} | base64 -d > TMessagesProj/config/release.keystore
           echo ${{ secrets.GOOGLE_SERVICES_JSON }} | base64 -d > TMessagesProj/google-services.json
@@ -206,7 +200,7 @@ jobs:
         run: |
           chmod +x telegram-bot-api-binary
           ./telegram-bot-api-binary --api-id=21724 --api-hash=3e0cb5efcd52300aec5994fdfc5bdc16 --local 2>&1 > /dev/null &
-          curl https://raw.githubusercontent.com/qwq233/qwq233/master/uploadCI.py -o uploadCI.py
+          curl https://raw.githubusercontent.com/C0dwiz/Assets/refs/heads/main/uploadCI.py -o uploadCI.py
           python uploadCI.py
         env:
             TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
